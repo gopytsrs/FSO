@@ -1,0 +1,21 @@
+.notification-success {
+	width: max-content;
+	font-size: 1.1rem;
+	padding: 0.5em 0.2em;
+	margin: 0.5em 0;
+	border: 2px solid green;
+	border-radius: 0.1rem;
+	color: green;
+	background-color: lightgray;
+}
+
+.notification-error {
+	width: max-content;
+	font-size: 1.1rem;
+	padding: 0.5em 0.2em;
+	margin: 0.5em 0;
+	border: 2px solid red;
+	border-radius: 0.1rem;
+	color: red;
+	background-color: lightgray;
+}
