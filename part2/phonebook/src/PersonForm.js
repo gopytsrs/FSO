@@ -49,7 +49,7 @@ const PersonForm = ({ setPersons, persons, setMessage }) => {
 			})
 			.catch((err) => {
 				console.log(err);
-				setMessage(`Failed to add ${newName} to the phonebook`, 'error');
+				setMessage(`Failed to add ${newName} to the phonebook ${err}`, 'error');
 			});
 	};
 

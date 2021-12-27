@@ -59,7 +59,10 @@ app.post('/api/persons', (req, res, next) => {
 		number: body.number,
 	});
 
-	person.save().then((savedPerson) => res.json(savedPerson));
+	person
+		.save()
+		.then((savedPerson) => res.json(savedPerson))
+		.catch((err) => next(err));
 });
 
 app.put('/api/persons/:id', (req, res, next) => {
@@ -92,6 +95,8 @@ const errorHandler = (error, request, response, next) => {
 
 	if (error.name === 'CastError') {
 		return response.status(400).send({ error: 'malformatted id' });
+	} else if (error.name === 'ValidationError') {
+		return response.status(400).send({ error: 'Expected name to be unique' });
 	}
 
 	next(error);
