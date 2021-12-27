@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 
 const Note = require('./models/note');
 
@@ -44,7 +45,7 @@ app.get('/api/notes/:id', (req, res, next) => {
 
 app.delete('/api/notes/:id', (req, res, next) => {
 	Note.findByIdAndRemove(req.params.id)
-		.then((result) => res.status(204).end())
+		.then(() => res.status(204).end())
 		.catch((err) => next(err));
 });
 
