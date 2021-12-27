@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv');
+dotenv.config();
 const Person = require('./models/person');
 
 const morgan = require('morgan');
-morgan.token('body', (req, res) => {
+morgan.token('body', (req) => {
 	return JSON.stringify(req.body);
 });
 app.use(morgan(':method :url :status :response-time ms - :res[content-length] :body'));
@@ -80,7 +81,7 @@ app.put('/api/persons/:id', (req, res, next) => {
 
 app.delete('/api/persons/:id', (req, res, next) => {
 	Person.findByIdAndDelete(req.params.id)
-		.then((result) => res.status(204).end())
+		.then(() => res.status(204).end())
 		.catch((err) => next(err));
 });
 

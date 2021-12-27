@@ -7,7 +7,7 @@ console.log('connecting to MongoDB: ', DATABASE_URI);
 
 mongoose
 	.connect(DATABASE_URI)
-	.then((result) => console.log('Connected to MongoDb'))
+	.then(() => console.log('Connected to MongoDb'))
 	.catch((err) => console.log(`Error connecting to MongoDB: ${err.message}`));
 
 const personSchema = mongoose.Schema({
