@@ -17,7 +17,7 @@ if (process.argv.length === 4) {
 
 const password = process.argv[2];
 
-const url = `mongodb+srv://seangoats:${password}@cluster0.c4kho.mongodb.net/phonebook-app?retryWrites=true&w=majority`;
+const url = process.env.DATABASE_URI;
 
 mongoose.connect(url);
 
