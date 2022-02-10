@@ -31,12 +31,11 @@ usersRouter.post('/', async (request, response) => {
 });
 
 usersRouter.get('/', async (request, response) => {
-	const users = await User.find({});
-	// if (!users.length) {
-	// 	response.status(400).json({ error: 'No users were found' });
-	// 	return;
-	// }
-
+	const users = await User.find({}).populate('blogs', { likes: 0, user: 0 });
+	if (!users.length) {
+		response.status(400).json({ error: 'No users were found' });
+		return;
+	}
 	response.status(200).json(users);
 });
 
