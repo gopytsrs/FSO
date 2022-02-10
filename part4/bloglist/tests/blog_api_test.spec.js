@@ -57,6 +57,14 @@ it('should response with status code 400 if title and url are missing', async ()
 	expect(allBlogs).toHaveLength(helper.initialBlogs.length);
 });
 
+it('should allow to delete a blog', async () => {
+	const allBlogs = await helper.blogsInDB();
+	await api.delete(`/api/blogs/${allBlogs[0].id}`).expect(204);
+
+	const allBlogsAfterDelete = await helper.blogsInDB();
+	expect(allBlogsAfterDelete).toHaveLength(helper.initialBlogs.length - 1);
+});
+
 afterAll(() => {
 	mongoose.connection.close();
 });

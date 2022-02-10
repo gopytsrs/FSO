@@ -1,0 +1,2 @@
+DELETE http://localhost:3001/api/blogs/61d21eed5a151b4dc9b105e3
+//Replace id with testing id
