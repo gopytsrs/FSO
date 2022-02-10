@@ -65,6 +65,15 @@ it('should allow to delete a blog', async () => {
 	expect(allBlogsAfterDelete).toHaveLength(helper.initialBlogs.length - 1);
 });
 
+it('should allow to update a blog likes', async () => {
+	const updatedLikes = { likes: 999 };
+	const allBlogs = await helper.blogsInDB();
+	await api.put(`/api/blogs/${allBlogs[0].id}`).send(updatedLikes).expect(204);
+
+	const allBlogsAfterUpdate = await helper.blogsInDB();
+	expect(allBlogsAfterUpdate[0].likes).toEqual(999);
+});
+
 afterAll(() => {
 	mongoose.connection.close();
 });
