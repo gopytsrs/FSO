@@ -31,9 +31,8 @@ it('should have id property on the blog', async () => {
 
 it('should create a new blog', async () => {
 	const blogToCreate = { title: 'testblog3', author: 'testauthor3', url: 'testurl3', likes: 75 };
-	const response = await api.post('/api/blogs').send(blogToCreate);
+	await api.post('/api/blogs').send(blogToCreate).expect(201);
 
-	expect(response.status).toBe(201);
 	const allBlogs = await helper.blogsInDB();
 	expect(allBlogs.length).toBe(helper.initialBlogs.length + 1);
 	const blogSaved = helper.getLastBlogWithoutID(allBlogs);
@@ -42,9 +41,8 @@ it('should create a new blog', async () => {
 
 it('should default create a new blogs with likes=0 if no likes provided', async () => {
 	const blogToCreate = { title: 'testblogslikes', author: 'testbloglikes', url: 'testurl4' };
-	const response = await api.post('/api/blogs').send(blogToCreate);
+	await api.post('/api/blogs').send(blogToCreate).expect(201);
 
-	expect(response.status).toBe(201);
 	const allBlogs = await helper.blogsInDB();
 	expect(allBlogs.length).toBe(helper.initialBlogs.length + 1);
 	const blogSaved = helper.getLastBlogWithoutID(allBlogs);
@@ -53,9 +51,10 @@ it('should default create a new blogs with likes=0 if no likes provided', async 
 
 it('should response with status code 400 if title and url are missing', async () => {
 	const blogToCreate = { author: 'testtitleurlmissing' };
-	const response = await api.post('/api/blogs').send(blogToCreate);
+	await api.post('/api/blogs').send(blogToCreate).expect(400);
 
-	expect(response.status).toBe(400);
+	const allBlogs = await helper.blogsInDB();
+	expect(allBlogs).toHaveLength(helper.initialBlogs.length);
 });
 
 afterAll(() => {
