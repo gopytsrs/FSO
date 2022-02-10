@@ -3,7 +3,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNlYW5nb2F0cyIsImlkIjoiNjIwNTY5MzI1MGUyNmYwZjQzMzVjNjA5IiwiaWF0IjoxNjQ0NTI0ODI4fQ.6DmwGb4i6fnQWexWzJr_TljvIYHW4yH4xE48LhaaK6M
 
 {
-    "title": "This is a test add",
+    "title": "This is a test add1",
     "author": "Sean Goh",
     "url": "No url",
     "likes": 0
